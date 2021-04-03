@@ -96,25 +96,39 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 100, top: 30, right: 100),
-                  height: 50,
-                  width: 500,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.lightBlueAccent,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Center(
-                      child: Text(
-                    "Submit",
+                //flat button
+                FlatButton(
+                  child: Text(
+                    'Update',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  )),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.italic),
+                  ),
+                  onPressed: () {},
+                  color: Colors.lightBlueAccent,
+                  textColor: Colors.white,
+                ),
+                //raise button
+                RaisedButton(
+                  child: Text('Updated'),
+                  onPressed: () {},
+                  color: Colors.white,
+                  textColor: Colors.black,
+                  splashColor: Colors.lightGreenAccent,
+                ),
+                //floating action button
+                FloatingActionButton(
+                  child: Icon(Icons.save),
+                  // Text('Submit'),
+                  onPressed: () {},
+                  foregroundColor: Colors.black,
+                  backgroundColor: Colors.yellow,
+                ),
+                FloatingActionButton.extended(
+                  onPressed: () {},
+                  label: Text('Save'),
+                  icon: Icon(Icons.save),
                 ),
               ],
             ),
