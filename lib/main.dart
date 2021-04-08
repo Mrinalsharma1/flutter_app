@@ -10,120 +10,87 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'my android',
+      title: '11 days',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Hello '),
           leading: Icon(Icons.home),
+          title: Text('Form'),
+          backgroundColor: Colors.amberAccent,
         ),
-        body: Center(
-          child: Stack(
-            fit: StackFit.passthrough,
-            overflow: Overflow.visible,
-            children: [
-              Container(
-                height: 300,
-                width: 400,
-                color: Colors.green,
-                child: Center(
-                  child: Text(
-                    "hello !!!",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 20,
-                right: 30,
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.orange,
-                  child: Center(
-                    child: Text(
-                      "coders.",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 20,
-                left: 20,
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.lightBlue,
-                  child: Center(
-                    child: Text(
-                      "coders.",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 20,
-                bottom: 20,
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.orange,
-                  child: Center(
-                    child: Text(
-                      "coders.",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: 20,
-                right: 20,
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.lightBlueAccent,
-                  child: Center(
-                    child: Text(
-                      "coders.",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                height: 50,
-                width: 400,
-                color: Colors.blue,
-                child: Center(
-                  child: Text(
-                    "hello !!!",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+        // backgroundColor: Colors.lightBlue,
+        body: Forms(),
+      ),
+    );
+  }
+}
+
+class Forms extends StatefulWidget {
+  @override
+  _FormsState createState() => _FormsState();
+}
+
+class _FormsState extends State<Forms> {
+  final Keys = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: Keys,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: "Enter your name",
+              labelText: "Name",
+              icon: Icon(Icons.person),
+            ),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please Fill the Details';
+              }
+              return null;
+            },
           ),
-        ),
+          TextFormField(
+            obscureText: true,
+            decoration: InputDecoration(
+              hintText: "Enter your Password",
+              labelText: "Password",
+              icon: Icon(Icons.lock),
+            ),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please Fill the Details';
+              }
+              return null;
+            },
+          ),
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: "Enter your Link",
+              labelText: "Github Link",
+              icon: Icon(Icons.link),
+            ),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please Fill the Details';
+              }
+              return null;
+            },
+          ),
+          Container(
+            child: ElevatedButton(
+              child: Text('submit'),
+              onPressed: () {
+                if (Keys.currentState.validate()) {
+                  Scaffold.of(context).showBottomSheet(
+                    (context) => Text("validate is going on"),
+                  );
+                }
+              },
+            ),
+          )
+        ],
       ),
     );
   }
