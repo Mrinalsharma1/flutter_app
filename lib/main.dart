@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,87 +10,192 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '11 days',
+      title: '8 days of flutter',
       home: Scaffold(
         appBar: AppBar(
           leading: Icon(Icons.home),
-          title: Text('Form'),
-          backgroundColor: Colors.amberAccent,
+          title: Text('8 days'),
+          backgroundColor: Colors.black,
         ),
-        // backgroundColor: Colors.lightBlue,
-        body: Forms(),
-      ),
-    );
-  }
-}
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Icon(
+                              Icons.home,
+                              color: Colors.black,
+                              size: 40,
+                              textDirection: TextDirection.rtl,
+                            ),
+                            Text('Home'),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.access_alarm,
+                          color: Colors.blueAccent,
+                          size: 40,
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text('Alarm'),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.edit_road,
+                          color: Colors.redAccent,
+                          size: 40,
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text('Road'),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.mail,
+                          color: Colors.blueGrey,
+                          size: 40,
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text('Road'),
+                      ],
+                    ),
+                  ],
+                ),
 
-class Forms extends StatefulWidget {
-  @override
-  _FormsState createState() => _FormsState();
-}
+                //this is second section
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Icon(
+                              Icons.search,
+                              color: Colors.blueAccent,
+                              size: 40,
+                              textDirection: TextDirection.rtl,
+                            ),
+                            Text('Search'),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.info,
+                          color: Colors.black,
+                          size: 40,
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text('Info'),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.image,
+                          color: Colors.redAccent,
+                          size: 40,
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text('Image'),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.folder,
+                          color: Colors.blueGrey,
+                          size: 40,
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text('Folder'),
+                      ],
+                    ),
+                  ],
+                ),
 
-class _FormsState extends State<Forms> {
-  final Keys = GlobalKey<FormState>();
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: Keys,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: "Enter your name",
-              labelText: "Name",
-              icon: Icon(Icons.person),
+                // this is third grid
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Icon(
+                              Icons.cancel,
+                              color: Colors.redAccent,
+                              size: 40,
+                              textDirection: TextDirection.rtl,
+                            ),
+                            Text('Cancle'),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.delete,
+                          color: Colors.orangeAccent,
+                          size: 40,
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text('Info'),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(
+                          Icons.file_copy,
+                          color: Colors.black,
+                          size: 40,
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text('Image'),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please Fill the Details';
-              }
-              return null;
-            },
           ),
-          TextFormField(
-            obscureText: true,
-            decoration: InputDecoration(
-              hintText: "Enter your Password",
-              labelText: "Password",
-              icon: Icon(Icons.lock),
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please Fill the Details';
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: "Enter your Link",
-              labelText: "Github Link",
-              icon: Icon(Icons.link),
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please Fill the Details';
-              }
-              return null;
-            },
-          ),
-          Container(
-            child: ElevatedButton(
-              child: Text('submit'),
-              onPressed: () {
-                if (Keys.currentState.validate()) {
-                  Scaffold.of(context).showBottomSheet(
-                    (context) => Text("validate is going on"),
-                  );
-                }
-              },
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
