@@ -189,7 +189,19 @@ class MyApp extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text("This is network image"),
+                              child: Container(
+                                child: Text("This is network image"),
+                                decoration: BoxDecoration(
+                                  color: Colors.greenAccent,
+                                  borderRadius: BorderRadius.circular(3),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.orangeAccent,
+                                      offset: Offset(2.0, 3.0),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -209,7 +221,19 @@ class MyApp extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text("Image From Google"),
+                              child: Container(
+                                child: Text("Image From Google"),
+                                decoration: BoxDecoration(
+                                  color: Colors.amberAccent,
+                                  borderRadius: BorderRadius.circular(3),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.blue,
+                                      offset: Offset(2.0, 3.0),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
