@@ -13,16 +13,74 @@ class MyApp extends StatelessWidget {
       title: '12 days',
       home: Scaffold(
         appBar: AppBar(
-          leading: Icon(
-            Icons.home,
-            size: 30,
-            color: Colors.blueAccent,
-          ),
+          // leading: Icon(
+          //   Icons.home,
+          //   size: 30,
+          //   color: Colors.blueAccent,
+          // ),
           title: Text(
             '12 days Card',
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: Colors.deepOrangeAccent,
+        ),
+        // here is drawer to show your list view
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.only(top: 32),
+            children: [
+              UserAccountsDrawerHeader(
+                accountName: Text("Mrinal Shamra"),
+                accountEmail: Text("MrinalSharma@gmail.com"),
+                currentAccountPicture: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(100),
+                      image: DecorationImage(
+                        image: AssetImage("image/1.jpg"),
+                        fit: BoxFit.fill,
+                      )),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text("Home"),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.people),
+                title: Text("About"),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.money),
+                title: Text("Payment"),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.local_grocery_store),
+                title: Text("Store"),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.add),
+                title: Text("Add"),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text("Setting"),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.help),
+                title: Text("Help"),
+                onTap: () {},
+              )
+            ],
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -340,6 +398,17 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+// creat new page when we click home icon on drawer
+
+class Homepage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(child: Text("this is home page")),
     );
   }
 }
