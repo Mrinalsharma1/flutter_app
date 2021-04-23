@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/Newcard.dart';
 
 void main() {
-  // runApp(MyApp(names: List<String>.generate(50, (a) => "coder!! $a")));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,34 +15,47 @@ class MyApp extends StatelessWidget {
       // title: "17 Days Basic List",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Long list"),
+          title: Text("Horizontal list"),
         ),
-        body: GridView.count(
-          crossAxisCount: 2,
-          children: List.generate(datas.length, (index) {
-            return Center(
-              child: Newcard(
-                datas: datas[index],
+        body: Container(
+          height: 150.0,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Container(
+                width: 150.0,
+                color: Colors.red,
+                child: Center(
+                  child: ListTile(
+                    leading: Icon(Icons.home),
+                    title: Text("Home"),
+                  ),
+                ),
               ),
-            );
-          }),
+              Container(
+                width: 150.0,
+                color: Colors.blue,
+                child: Center(
+                  child: ListTile(
+                    leading: Icon(Icons.home),
+                    title: Text("Home"),
+                  ),
+                ),
+              ),
+              Container(
+                width: 150.0,
+                color: Colors.green,
+                child: Center(
+                  child: ListTile(
+                    leading: Icon(Icons.home),
+                    title: Text("Home"),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-class data {
-  const data({this.title, this.icon});
-  final String title;
-  final IconData icon;
-}
-
-const List<data> datas = const <data>[
-  const data(title: 'Home', icon: Icons.home),
-  const data(title: 'Home', icon: Icons.add_box),
-  const data(title: 'Home', icon: Icons.home),
-  const data(title: 'Setting', icon: Icons.settings),
-  const data(title: 'Home', icon: Icons.home),
-  const data(title: 'Home', icon: Icons.home),
-];
