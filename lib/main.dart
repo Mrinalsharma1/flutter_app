@@ -1,189 +1,112 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Newcard.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class MyApp extends StatelessWidget {
+  // final List<String> names;
+  // MyApp({key, this.names}) : super(key: key);
 
-class _MyAppState extends State<MyApp> {
-  String output = "0";
-  String _output = "0";
-
-  double num1 = 0.0, num2 = 0.0;
-  String oprend = "";
-  operation(String btnText) {
-    if (btnText == "C") {
-      _output = "0";
-      num1 = num2 = 0.0;
-      oprend = "";
-    } else if (btnText == "+" ||
-        btnText == "-" ||
-        btnText == "x" ||
-        btnText == "/") {
-      num1 = double.parse(output);
-      oprend = btnText;
-      _output = "0";
-    } else if (btnText == "=") {
-      num2 = double.parse(output);
-
-      if (oprend == "+") {
-        _output = (num1 + num2).toString();
-      }
-      if (oprend == "-") {
-        _output = (num1 - num2).toString();
-      }
-      if (oprend == "x") {
-        _output = (num1 * num2).toString();
-      }
-      if (oprend == "/") {
-        _output = (num1 / num2).toString();
-      }
-
-      num1 = 0.0;
-      num2 = 0.0;
-      oprend = "";
-    } else {
-      _output = _output + btnText;
-    }
-
-    setState(() {
-      output = double.parse(_output).toStringAsFixed(2);
-    });
-  }
-
-  Widget button(String btnText) {
-    return Expanded(
-      child: RawMaterialButton(
-        shape: Border.all(color: Colors.black12, width: 2),
-        fillColor: Colors.grey,
-        child: Text(
-          "$btnText",
-          style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.w700, color: Colors.white),
-        ),
-        onPressed: () {
-          operation(btnText);
-        },
-        padding: EdgeInsets.all(30.0),
-        splashColor: Colors.redAccent,
-      ),
-    );
-  }
-
+  List<String> images = [
+    "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      // title: "17 Days Basic List",
       home: Scaffold(
-        appBar: AppBar(
-          leading: Icon(Icons.home),
-          title: Text("Calculater"),
-          backgroundColor: Colors.black12,
-        ),
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+          appBar: AppBar(
+            title: Text("Long list"),
+          ),
+          body: GridView.extent(
+            maxCrossAxisExtent: 250,
+            primary: false,
+            padding: EdgeInsets.all(10.0),
+            crossAxisSpacing: 8.0,
             children: [
-              Expanded(
-                child: Container(
-                  alignment: Alignment.bottomRight,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black12, width: 2),
-                      color: Colors.black12),
-                  padding: EdgeInsets.all(25),
-                  margin: EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    "$output",
-                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.w500),
-                  ),
+              Container(
+                child: Image.network(
+                  "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+                  height: 200,
+                  width: 200,
                 ),
               ),
-              Row(
-                children: [
-                  button("7"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("8"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("9"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("/"),
-                ],
+              Container(
+                child: Image.network(
+                  "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+                  height: 200,
+                  width: 200,
+                ),
               ),
-              SizedBox(
-                height: 5,
+              Container(
+                child: Image.network(
+                  "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+                  height: 200,
+                  width: 200,
+                ),
               ),
-              Row(
-                children: [
-                  button("4"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("5"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("6"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("x"),
-                ],
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  button("3"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("2"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("1"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("-"),
-                ],
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  button("0"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("C"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("+"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  button("="),
-                ],
+              Container(
+                child: Image.network(
+                  "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+                  height: 200,
+                  width: 200,
+                ),
               ),
             ],
+          )
+
+          // this is first property
+
+          // body: GridView.builder(
+          //   itemCount: images.length,
+          //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //     crossAxisCount: 2,
+          //     crossAxisSpacing: 7,
+          //   ),
+          //   itemBuilder: (BuildContext context, int index) {
+          //     return Container(child: Image.network(images[index]));
+          //   },
+          // ),
+
+          // this is first property
+
+          // body: GridView.count(
+          //   crossAxisCount: 2,
+          //   mainAxisSpacing: 6.0,
+          //   crossAxisSpacing: 5.0,
+          //   children: List.generate(datas.length, (index) {
+          //     return Center(
+          //       child: Newcard(
+          //         datas: datas[index],
+          //       ),
+          //     );
+          //   }),
+          // ),
           ),
-        ),
-      ),
     );
   }
 }
+
+class data {
+  const data({this.title, this.icon});
+  final String title;
+  final IconData icon;
+}
+
+const List<data> datas = const <data>[
+  const data(title: 'Home', icon: Icons.home),
+  const data(title: 'Home', icon: Icons.add_box),
+  const data(title: 'Home', icon: Icons.home),
+  const data(title: 'Setting', icon: Icons.settings),
+  const data(title: 'Home', icon: Icons.home),
+  const data(title: 'Home', icon: Icons.home),
+  const data(title: 'Setting', icon: Icons.settings),
+  const data(title: 'Home', icon: Icons.home),
+  const data(title: 'Home', icon: Icons.home),
+];
