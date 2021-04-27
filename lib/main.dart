@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Newcard.dart';
+// import 'package:flutter_app/Newcard.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
