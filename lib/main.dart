@@ -1,109 +1,89 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-enum Gender { male, female, transgender }
-
-class _MyAppState extends State<MyApp> {
-  bool firstbox = false;
-  bool secondbox = false;
-  bool thirdbox = false;
-  Gender gender = Gender.male;
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Radio Button"),
+          title: Text("snack bar"),
         ),
-        body: Container(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text("Hobby :"),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("Painting"),
-                  Checkbox(
-                      activeColor: Colors.redAccent,
-                      checkColor: Colors.amber,
-                      value: this.firstbox,
-                      onChanged: (bool value) {
-                        setState(() {
-                          this.firstbox = value;
-                        });
-                      }),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("Singing"),
-                  Checkbox(
-                      value: this.secondbox,
-                      onChanged: (bool value) {
-                        setState(() {
-                          this.secondbox = value;
-                        });
-                      }),
-                ],
-              ),
-              CheckboxListTile(
-                  title: Text("hey whats' up"),
-                  subtitle: Text("good to see u!!"),
-                  secondary: Icon(Icons.nat),
-                  value: this.thirdbox,
-                  onChanged: (bool value) {
-                    setState(() {
-                      this.thirdbox = value;
-                    });
-                  }),
-              ListTile(
-                leading: Radio(
-                    value: Gender.male,
-                    groupValue: gender,
-                    onChanged: (Gender value) {
-                      setState(() {
-                        this.gender = value;
-                      });
-                    }),
-                title: Text("Male"),
-              ),
-              ListTile(
-                leading: Radio(
-                    value: Gender.female,
-                    groupValue: gender,
-                    onChanged: (Gender value) {
-                      setState(() {
-                        this.gender = value;
-                      });
-                    }),
-                title: Text("Femail"),
-              ),
-              ListTile(
-                leading: Radio(
-                    value: Gender.transgender,
-                    groupValue: gender,
-                    onChanged: (Gender value) {
-                      setState(() {
-                        this.gender = value;
-                      });
-                    }),
-                title: Text("transgender"),
-              ),
-            ],
+        // body: linear_progress_bar(), this is first type of progress bar
+        // body: circular_progress_bar(), this is second type of progress bar
+        body: snack_bar(),
+      ),
+    );
+  }
+}
+
+class linear_progress_bar extends StatefulWidget {
+  @override
+  _linear_progress_barState createState() => _linear_progress_barState();
+}
+
+class _linear_progress_barState extends State<linear_progress_bar> {
+  bool loading = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Center(
+            child: Container(
+              margin: EdgeInsets.all(10.0),
+              child: loading
+                  ? LinearProgressIndicator()
+                  : Text("Please check to download"),
+            ),
           ),
+          RaisedButton(
+            child: Text("Download"),
+            color: Colors.amberAccent,
+            onPressed: () {
+              setState(() {
+                loading = !loading;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class circular_progress_bar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+        ),
+      ),
+    );
+  }
+}
+
+class snack_bar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        child: RaisedButton(
+          child: Text("Snack bar"),
+          color: Colors.amber,
+          onPressed: () {
+            final msg = SnackBar(
+              content: Text("This is Notification"),
+              duration: Duration(seconds: 10),
+            );
+            Scaffold.of(context).showSnackBar(msg);
+          },
         ),
       ),
     );
