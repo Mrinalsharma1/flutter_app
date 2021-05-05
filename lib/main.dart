@@ -1,38 +1,151 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final imageList = [
-    'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246__480.jpg',
-    'https://cdn.pixabay.com/photo/2016/11/20/09/06/bowl-1842294__480.jpg',
-    'https://cdn.pixabay.com/photo/2017/01/03/11/33/pizza-1949183__480.jpg',
-    'https://cdn.pixabay.com/photo/2017/02/03/03/54/burger-2034433__480.jpg',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter Swiper TINDER Example'),
-        ),
-        body: Swiper(
-          layout: SwiperLayout.TINDER,
-          itemCount: imageList.length,
-          itemBuilder: (context, index) {
-            return Image.network(
-              imageList[index],
-              fit: BoxFit.cover,
-            );
+      // home: Switch_wigit(),
+      home: table_wigit(),
+    );
+  }
+}
 
-           pagination: SwiperPagination(),
-          },
-          itemWidth: 400.0,
-          itemHeight: 500.0,
+class Switch_wigit extends StatefulWidget {
+  @override
+  _Switch_wigitState createState() => _Switch_wigitState();
+}
+
+class _Switch_wigitState extends State<Switch_wigit> {
+  bool switch_state = false;
+  var textValue = "switch is on";
+  void display_state(bool value) {
+    if (switch_state == false) {
+      setState(() {
+        switch_state = true;
+        textValue = "switch is on";
+      });
+    } else {
+      setState(() {
+        switch_state = false;
+        textValue = "switch is off";
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("switch"),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              child: Transform.scale(
+                scale: 2,
+                child: Switch(
+                  value: switch_state,
+                  onChanged: display_state,
+                  activeColor: Colors.green,
+                  inactiveTrackColor: Colors.red,
+                  inactiveThumbColor: Colors.redAccent,
+                ),
+              ),
+            ),
+            Text('$textValue')
+          ],
+        ));
+  }
+}
+
+class table_wigit extends StatefulWidget {
+  @override
+  _table_wigitState createState() => _table_wigitState();
+}
+
+class _table_wigitState extends State<table_wigit> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Table_wigit"),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(5),
+        child: Table(
+          defaultColumnWidth: FixedColumnWidth(140),
+          border: TableBorder.all(
+            color: Colors.red,
+          ),
+          children: [
+            TableRow(children: [
+              Column(
+                children: [
+                  Text(
+                    "Name",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    "Name",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    "Name",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ]),
+            TableRow(children: [
+              Column(
+                children: [
+                  Text("Class"),
+                ],
+              ),
+              Column(
+                children: [
+                  Text("Name"),
+                ],
+              ),
+              Column(
+                children: [
+                  Text("Name"),
+                ],
+              ),
+            ]),
+            TableRow(children: [
+              Column(
+                children: [
+                  Text("Subject"),
+                ],
+              ),
+              Column(
+                children: [
+                  Text("Name"),
+                ],
+              ),
+              Column(
+                children: [
+                  Text("Name"),
+                ],
+              ),
+            ]),
+          ],
         ),
       ),
     );
