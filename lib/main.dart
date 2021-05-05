@@ -1,89 +1,38 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final imageList = [
+    'https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246__480.jpg',
+    'https://cdn.pixabay.com/photo/2016/11/20/09/06/bowl-1842294__480.jpg',
+    'https://cdn.pixabay.com/photo/2017/01/03/11/33/pizza-1949183__480.jpg',
+    'https://cdn.pixabay.com/photo/2017/02/03/03/54/burger-2034433__480.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("snack bar"),
+          title: Text('Flutter Swiper TINDER Example'),
         ),
-        // body: linear_progress_bar(), this is first type of progress bar
-        // body: circular_progress_bar(), this is second type of progress bar
-        body: snack_bar(),
-      ),
-    );
-  }
-}
-
-class linear_progress_bar extends StatefulWidget {
-  @override
-  _linear_progress_barState createState() => _linear_progress_barState();
-}
-
-class _linear_progress_barState extends State<linear_progress_bar> {
-  bool loading = false;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Center(
-            child: Container(
-              margin: EdgeInsets.all(10.0),
-              child: loading
-                  ? LinearProgressIndicator()
-                  : Text("Please check to download"),
-            ),
-          ),
-          RaisedButton(
-            child: Text("Download"),
-            color: Colors.amberAccent,
-            onPressed: () {
-              setState(() {
-                loading = !loading;
-              });
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class circular_progress_bar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-        ),
-      ),
-    );
-  }
-}
-
-class snack_bar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: RaisedButton(
-          child: Text("Snack bar"),
-          color: Colors.amber,
-          onPressed: () {
-            final msg = SnackBar(
-              content: Text("This is Notification"),
-              duration: Duration(seconds: 10),
+        body: Swiper(
+          layout: SwiperLayout.TINDER,
+          itemCount: imageList.length,
+          itemBuilder: (context, index) {
+            return Image.network(
+              imageList[index],
+              fit: BoxFit.cover,
             );
-            Scaffold.of(context).showSnackBar(msg);
+
+           pagination: SwiperPagination(),
           },
+          itemWidth: 400.0,
+          itemHeight: 500.0,
         ),
       ),
     );
