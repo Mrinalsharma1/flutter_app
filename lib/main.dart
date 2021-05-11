@@ -1,67 +1,45 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _DataTableExample createState() => _DataTableExample();
-}
-
-class _DataTableExample extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Flutter DataTable Example'),
-          ),
-          body: ListView(children: <Widget>[
-            Center(
-                child: Text(
-              'People-Chart',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            )),
-            DataTable(
-              columns: [
-                DataColumn(
-                    label: Text('ID',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold))),
-                DataColumn(
-                    label: Text('Name',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold))),
-                DataColumn(
-                    label: Text('Profession',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold))),
-              ],
-              rows: [
-                DataRow(cells: [
-                  DataCell(Text('1')),
-                  DataCell(Text('Stephen')),
-                  DataCell(Text('Actor')),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('5')),
-                  DataCell(Text('John')),
-                  DataCell(Text('Student')),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('10')),
-                  DataCell(Text('Harry')),
-                  DataCell(Text('Leader')),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('15')),
-                  DataCell(Text('Peter')),
-                  DataCell(Text('Scientist')),
-                ]),
-              ],
+      debugShowCheckedModeBanner: false,
+      home: MyCalender(),
+    );
+  }
+}
+
+class MyCalender extends StatelessWidget {
+  final CalendarController _controller = CalendarController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.home),
+        title: Text("calender"),
+      ),
+      body: Center(
+        child: Container(
+          padding: EdgeInsets.only(bottom: 270),
+          child: TableCalendar(
+            calendarController: _controller,
+            availableGestures: AvailableGestures.horizontalSwipe,
+            calendarStyle: CalendarStyle(
+              weekdayStyle: TextStyle(color: Colors.blue),
+              weekendStyle: TextStyle(color: Colors.green),
+              outsideDaysVisible: false,
             ),
-          ])),
+          ),
+        ),
+      ),
     );
   }
 }
