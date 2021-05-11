@@ -1,7 +1,5 @@
-import 'dart:ui';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,32 +9,49 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyCalender(),
+      home: First_Screen(),
     );
   }
 }
 
-class MyCalender extends StatelessWidget {
-  final CalendarController _controller = CalendarController();
+class First_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.home),
-        title: Text("calender"),
+        title: Text("Split screen"),
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.only(bottom: 270),
-          child: TableCalendar(
-            calendarController: _controller,
-            availableGestures: AvailableGestures.horizontalSwipe,
-            calendarStyle: CalendarStyle(
-              weekdayStyle: TextStyle(color: Colors.blue),
-              weekendStyle: TextStyle(color: Colors.green),
-              outsideDaysVisible: false,
-            ),
+          child: RaisedButton(
+            child: Text("text Me"),
+            color: Colors.amber,
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Second_Screen()));
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Second_Screen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second screen"),
+      ),
+      body: Center(
+        child: Container(
+          child: RaisedButton(
+            child: Text("Back to page"),
+            color: Colors.amber,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
       ),
