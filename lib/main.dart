@@ -9,7 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: First_Screen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => First_Screen(),
+        '/second': (context) => Second_Screen(),
+        '/third': (context) => Third_Screen(),
+      },
     );
   }
 }
@@ -47,8 +52,32 @@ class Second_Screen extends StatelessWidget {
       body: Center(
         child: Container(
           child: RaisedButton(
-            child: Text("Back to page"),
+            child: Text("go to third page"),
             color: Colors.amber,
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Third_Screen()));
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Third_Screen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Third screen"),
+      ),
+      body: Center(
+        child: Container(
+          child: RaisedButton(
+            child: Text("Back to sec page"),
+            color: Colors.green,
             onPressed: () {
               Navigator.pop(context);
             },
