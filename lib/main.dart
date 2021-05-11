@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,81 +11,62 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => First_Screen(),
-        '/second': (context) => Second_Screen(),
-        '/third': (context) => Third_Screen(),
-      },
+      debugShowCheckedModeBanner: false,
+      home: splashscreen2(),
     );
   }
 }
 
-class First_Screen extends StatelessWidget {
+class splashScreen1 extends StatefulWidget {
+  @override
+  _splashScreenState createState() => _splashScreenState();
+}
+
+class _splashScreenState extends State<splashScreen1> {
+  void initState() {
+    super.initState();
+    Timer(
+      Duration(seconds: 4),
+      () => Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => homePage())),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Split screen"),
-      ),
-      body: Center(
-        child: Container(
-          child: RaisedButton(
-            child: Text("text Me"),
-            color: Colors.amber,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Second_Screen()));
-            },
-          ),
-        ),
-      ),
+    return Container(
+      color: Colors.white,
+      child: Image.network(
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrCXtELPLwJFnq4sdWbvL5F-HAxQspRqwZyA&usqp=CAU'),
     );
   }
 }
 
-class Second_Screen extends StatelessWidget {
+class homePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second screen"),
+        leading: Icon(Icons.home),
+        title: Text("Home_page"),
       ),
-      body: Center(
-        child: Container(
-          child: RaisedButton(
-            child: Text("go to third page"),
-            color: Colors.amber,
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Third_Screen()));
-            },
-          ),
-        ),
-      ),
+      body: Center(child: Text("Welcome to home page !!")),
     );
   }
 }
 
-class Third_Screen extends StatelessWidget {
+class splashscreen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Third screen"),
-      ),
-      body: Center(
-        child: Container(
-          child: RaisedButton(
-            child: Text("Back to sec page"),
-            color: Colors.green,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
-      ),
+    return SplashScreen(
+      seconds: 10,
+      navigateAfterSeconds: homePage(),
+      title: Text("E-learning Plateform"),
+      image: Image.network(
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrCXtELPLwJFnq4sdWbvL5F-HAxQspRqwZyA&usqp=CAU'),
+      photoSize: 100.0,
+      loadingText: Text("Loading"),
+      loaderColor: Colors.redAccent,
     );
   }
 }
